@@ -1,3 +1,3 @@
-../Core/DRV8323_RS/drv8323_io.c:18:6:drv8323_set_dir	16	static
+../Core/DRV8323_RS/drv8323_io.c:18:6:drv8323io_set_dir	16	static
 ../Core/DRV8323_RS/drv8323_io.c:22:6:drv8323_set_brake	16	static
 ../Core/DRV8323_RS/drv8323_io.c:26:6:drv8323_set_enable	16	static

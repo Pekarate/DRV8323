@@ -17,10 +17,11 @@ void drv8323_init(void){
 }
 
 void drv832_set_dir(uint8_t dir){
-	drv8323_set_dir(dir);
+	drv8323io_set_dir(dir);
 }
 
-void drv832_set_speed(uint8_t percent){
+void drv832_set_speed(uint8_t speed){
+	speed = speed;
 	drv_pwm_set_frequency(10000);
 }
 

@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "../DRV8323_RS/drv8323.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -64,6 +64,7 @@ static void MX_USART3_UART_Init(void);
 /* USER CODE BEGIN 0 */
 int _write(int file, char *ptr, int len)
 {
+	HAL_UART_Transmit(&huart3, ptr, len, 1000);
 	return len;
 }
 /* USER CODE END 0 */
@@ -100,7 +101,12 @@ int main(void)
   MX_TIM15_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  drv8323_init();
+  drv832_set_dir(1);
+  drv832_set_speed(100);
+  drv832_start();
+  HAL_Delay(1000);
+  drv832_stop();
   /* USER CODE END 2 */
 
   /* Infinite loop */
