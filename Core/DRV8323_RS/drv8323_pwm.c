@@ -30,7 +30,7 @@ void drv_pwm_set_duty_cycle(uint8_t percent){
 #define TIMER_FRE 48000000
 void drv_pwm_set_frequency(uint16_t hz){
 	uint32_t prescale = htim15.Instance->PSC;
-	if((TIMER_FRE/(prescale+1)) > 65535) {
+	if((TIMER_FRE/(prescale+1)/hz) > 65535) {
 		//todo
 		while(1);
 	}
