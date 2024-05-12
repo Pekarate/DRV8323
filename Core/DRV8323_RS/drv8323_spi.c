@@ -54,7 +54,7 @@ uint16_t DRV832x_trigger_spi_write(uint16_t val)
 {
 	s_drv832xSPI.SPI_TX_Data[0] = val;
 	drv8323io_set_cs(0);
-	HAL_SPI_TransmitReceive(s_drv832xSPI.pSPI_Handle, (uint8_t*)s_drv832xSPI.SPI_TX_Data, (uint8_t*)s_drv832xSPI.SPI_RX_Data,2,1000);
+	HAL_SPI_TransmitReceive(s_drv832xSPI.pSPI_Handle, (uint8_t*)s_drv832xSPI.SPI_TX_Data, (uint8_t*)s_drv832xSPI.SPI_RX_Data,1,1000);
 	drv8323io_set_cs(1);
 	return s_drv832xSPI.SPI_RX_Data[0] & 0x7FF;
 }
