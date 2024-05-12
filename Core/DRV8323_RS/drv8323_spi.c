@@ -263,7 +263,18 @@ void DRV8323_setupSpi()
 	//In http://www.ti.com/tool/boostxl-drv8323rs, the 5 control register are just written once in order.
 	DRV8323_writeSpi(ADR_DRV_CTRL, DRV8323regDrvCtrl);
 	printf("WRITE ADR_DRV_CTRL : %X\r\n",DRV8323regDrvCtrl);
+	temp = DRV8323_readSpi(ADR_DRV_CTRL);
+	printf("ADR_DRV_CTRL : %X\r\n",temp);
 	HAL_Delay(1);
+	DRV832x_write_DCR(DIS_CPUV_EN, DIS_GDF_DIS, OTW_REP_DIS, PWM_MODE_1X, 0x0, 0x0, 0x0, 0x0, 0x1);
+	printf("spi2Tx: 0x%x, spi2Rx: 0x%x\n\r", s_drv832xSPI.SPI_TX_Data[0],s_drv832xSPI.SPI_RX_Data[0]);
+	temp = DRV8323_readSpi(ADR_DRV_CTRL);
+	printf("ADR_DRV_CTRL : %X\r\n",temp);
+	DRV8323_writeSpi(ADR_DRV_CTRL, DRV8323regDrvCtrl);
+	printf("WRITE ADR_DRV_CTRL : %X\r\n",DRV8323regDrvCtrl);
+	printf("3:read DRV8323_DCR : 0x%X\n\r",DRV832x_trigger_read_register(DCR));
+
+
 	DRV8323_writeSpi(ADR_GATE_DRV_HS, DRV8323regGateDrvHS);
 	HAL_Delay(1);
 	DRV8323_writeSpi(ADR_GATE_DRV_LS, DRV8323regGateDrvLS);
