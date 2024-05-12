@@ -257,11 +257,11 @@ void DRV8323_writeSpi(uint8_t regAdr, uint16_t regVal)
 void DRV8323_setupSpi()
 {
     volatile uint16_t temp;
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_12, GPIO_PIN_SET); //PB12 is enable to motor controller
 
 	//In TI sample firmware http://www.ti.com/tool/tida-00774, DRV8323regGateDrvHS is written first, and it is written twice
 	//In http://www.ti.com/tool/boostxl-drv8323rs, the 5 control register are just written once in order.
 	DRV8323_writeSpi(ADR_DRV_CTRL, DRV8323regDrvCtrl);
+	printf("WRITE ADR_DRV_CTRL : %X\r\n",DRV8323regDrvCtrl);
 	HAL_Delay(1);
 	DRV8323_writeSpi(ADR_GATE_DRV_HS, DRV8323regGateDrvHS);
 	HAL_Delay(1);
@@ -275,6 +275,7 @@ void DRV8323_setupSpi()
     temp = DRV8323_readSpi(ADR_FAULT_STAT);
     temp = DRV8323_readSpi(ADR_VGS_STAT);
     temp = DRV8323_readSpi(ADR_DRV_CTRL);
+    printf("ADR_DRV_CTRL : %X\r\n",temp);
     temp = DRV8323_readSpi(ADR_GATE_DRV_HS);
     temp = DRV8323_readSpi(ADR_GATE_DRV_LS);
     temp = DRV8323_readSpi(ADR_OCP_CTRL);

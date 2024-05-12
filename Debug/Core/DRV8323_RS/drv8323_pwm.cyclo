@@ -1,4 +1,0 @@
-../Core/DRV8323_RS/drv8323_pwm.c:16:6:drv_pwm_start	1
-../Core/DRV8323_RS/drv8323_pwm.c:20:6:drv_pwm_stop	1
-../Core/DRV8323_RS/drv8323_pwm.c:24:6:drv_pwm_set_duty_cycle	1
-../Core/DRV8323_RS/drv8323_pwm.c:32:6:drv_pwm_set_frequency	2

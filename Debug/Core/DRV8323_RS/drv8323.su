@@ -1,5 +1,0 @@
-../Core/DRV8323_RS/drv8323.c:14:6:drv8323_init	8	static
-../Core/DRV8323_RS/drv8323.c:21:6:drv832_set_dir	16	static
-../Core/DRV8323_RS/drv8323.c:25:6:drv832_set_speed	16	static
-../Core/DRV8323_RS/drv8323.c:31:6:drv832_start	8	static
-../Core/DRV8323_RS/drv8323.c:35:6:drv832_stop	8	static
