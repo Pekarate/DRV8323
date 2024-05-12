@@ -15,6 +15,7 @@ void drv8323_init(void){
 	drv8323_set_enable(1);
 	DRV832x_initSPIInterface(&hspi1);
 	drv_pwm_set_duty_cycle(50);
+	DRV832x_blocking_configure();
 }
 
 void drv832_set_dir(uint8_t dir){

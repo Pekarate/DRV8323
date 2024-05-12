@@ -15,7 +15,7 @@
 //#define DRV_ENABLE_GPIO_Port GPIOD
 //#define DRV_DIR_Pin GPIO_PIN_7
 //#define DRV_DIR_GPIO_Port GPIOD
-
+void drv8323io_set_cs(uint8_t level);
 void drv8323io_set_dir(uint8_t level);
 void drv8323_set_brake(uint8_t level);
 void drv8323_set_enable(uint8_t level);

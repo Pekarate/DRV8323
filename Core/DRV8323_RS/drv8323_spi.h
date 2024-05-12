@@ -24,6 +24,8 @@ typedef struct{
 	uint8_t SPI_RX_Flag;
 } SPIStruct;
 
+#define READ_CMD		(1 << 15)
+#define WRITE_CMD		0
 
 #define FSR1            0x0     /// Fault Status Register 1
 #define FSR2            0x1     /// Fault Status Register 2
@@ -179,8 +181,8 @@ void DRV832x_disable(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 void DRV832x_disableHiZState(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 void DRV832x_initSPIInterface(SPI_HandleTypeDef* pspi);
 //void DRV832x_initSPIInterface(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, SPI_HandleTypeDef* pspi, GPIO_TypeDef* Enable_GPIOx, uint16_t Enable_GPIO_Pin);
-void DRV832x_read_FSR1();
-void DRV832x_read_FSR2();
+uint16_t DRV832x_read_FSR1(void);
+uint16_t DRV832x_read_FSR2();
 void DRV832x_read_register(int reg);
 uint16_t DRV832x_spi_write(uint16_t val);
 void DRV832x_write_register(int reg, int val);
@@ -193,5 +195,5 @@ void DRV832x_enable_gd(void);
 void DRV832x_disable_gd(void);
 void DRV832x_calibrate(void);
 void DRV832x_print_faults();
-
+void DRV832x_blocking_configure(void);
 #endif /* DRV8323_RS_DRV8323_SPI_H_ */

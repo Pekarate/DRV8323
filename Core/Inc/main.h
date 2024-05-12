@@ -59,6 +59,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define DRV_CS_Pin GPIO_PIN_4
+#define DRV_CS_GPIO_Port GPIOA
 #define DRV_BRAKE_Pin GPIO_PIN_8
 #define DRV_BRAKE_GPIO_Port GPIOD
 #define DRV_ENABLE_Pin GPIO_PIN_0

@@ -15,6 +15,10 @@
 //#define DRV_DIR_Pin GPIO_PIN_7
 //#define DRV_DIR_GPIO_Port GPIOD
 
+void drv8323io_set_cs(uint8_t level) {
+	HAL_GPIO_WritePin(DRV_CS_GPIO_Port, DRV_CS_Pin, level? GPIO_PIN_SET : GPIO_PIN_RESET );
+}
+
 void drv8323io_set_dir(uint8_t level) {
 	HAL_GPIO_WritePin(DRV_DIR_GPIO_Port, DRV_DIR_Pin, level? GPIO_PIN_SET : GPIO_PIN_RESET );
 }
