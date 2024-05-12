@@ -114,6 +114,7 @@ int main(void)
   HAL_Delay(2000);
   printf("---------------------------------------\r\n");
   HAL_TIM_Base_Start(&htim17); //for delay_us
+  drv832_reset_fault();
   drv8323_init();
   drv832_set_dir(1);
   drv832_set_speed(50);

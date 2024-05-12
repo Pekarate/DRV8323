@@ -264,6 +264,7 @@ void DRV8323_setupSpi()
 	//In TI sample firmware http://www.ti.com/tool/tida-00774, DRV8323regGateDrvHS is written first, and it is written twice
 	//In http://www.ti.com/tool/boostxl-drv8323rs, the 5 control register are just written once in order.
 	DRV8323_writeSpi(ADR_DRV_CTRL, DRV8323regDrvCtrl);
+	DRV832x_print_faults();
 	printf("WRITE ADR_DRV_CTRL : %X\r\n",DRV8323regDrvCtrl);
 	temp = DRV8323_readSpi(ADR_DRV_CTRL);
 	printf("ADR_DRV_CTRL : %X\r\n",temp);
