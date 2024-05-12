@@ -235,7 +235,7 @@ extern SPI_HandleTypeDef hspi1;
 uint16_t DRV8323_readSpi(uint8_t regAdr)
 {
 
-	uint16_t controlword = 0x8000 | (regAdr & 0x7) << 11; //MSbit =1 for read, address is 3 bits (MSbit is always 0), data is 11 bits
+	uint16_t controlword = 0x8000 | ((regAdr & 0x7) << 11); //MSbit =1 for read, address is 3 bits (MSbit is always 0), data is 11 bits
 	uint16_t recbuff = 0xbeef;
 
 	drv8323io_set_cs(0);
@@ -246,10 +246,11 @@ uint16_t DRV8323_readSpi(uint8_t regAdr)
 
 void DRV8323_writeSpi(uint8_t regAdr, uint16_t regVal)
 {
-	uint16_t controlword = (regAdr & 0x7) << 11 | (regVal & 0x7ff); //MSbit =0 for write, address is 3 bits (MSbit is always 0), data is 11 bits
+	uint16_t controlword = ((regAdr & 0x7) << 11) | (regVal & 0x7ff); //MSbit =0 for write, address is 3 bits (MSbit is always 0), data is 11 bits
 
+	uint16_t recbuff = 0xbeef;
 	drv8323io_set_cs(0);
-	HAL_SPI_Transmit(&hspi1, (uint8_t*)(&controlword), 1, 1000);
+	HAL_SPI_TransmitReceive(&hspi1, (uint8_t*)(&controlword), (uint8_t*)(&recbuff), 1, 1000);
 	drv8323io_set_cs(1);
 	return;
 }
