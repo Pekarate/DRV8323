@@ -32,3 +32,8 @@ void drv8323_set_enable(uint8_t level){
 //	printf("drv8323_set_enable: %s\n",level? "GPIO_PIN_SET" : "GPIO_PIN_RESET");
 	HAL_GPIO_WritePin(DRV_ENABLE_GPIO_Port, DRV_ENABLE_Pin, level? GPIO_PIN_SET : GPIO_PIN_RESET );
 }
+
+void drv8323io_set_call(uint8_t level){
+//	printf("drv8323_set_enable: %s\n",level? "GPIO_PIN_SET" : "GPIO_PIN_RESET");
+	HAL_GPIO_WritePin(DRV_CALL_GPIO_Port, DRV_CALL_Pin, level? GPIO_PIN_SET : GPIO_PIN_RESET );
+}

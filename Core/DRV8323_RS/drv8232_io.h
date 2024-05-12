@@ -19,5 +19,5 @@ void drv8323io_set_cs(uint8_t level);
 void drv8323io_set_dir(uint8_t level);
 void drv8323_set_brake(uint8_t level);
 void drv8323_set_enable(uint8_t level);
-
+void drv8323io_set_call(uint8_t level);
 #endif /* DRV8323_RS_DRV8232_IO_H_ */

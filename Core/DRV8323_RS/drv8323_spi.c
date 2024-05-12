@@ -258,7 +258,9 @@ void DRV8323_writeSpi(uint8_t regAdr, uint16_t regVal)
 void DRV8323_setupSpi()
 {
     volatile uint16_t temp;
-
+    drv8323io_set_call(1);
+    HAL_Delay(100);
+    drv8323io_set_call(0);
 	//In TI sample firmware http://www.ti.com/tool/tida-00774, DRV8323regGateDrvHS is written first, and it is written twice
 	//In http://www.ti.com/tool/boostxl-drv8323rs, the 5 control register are just written once in order.
 	DRV8323_writeSpi(ADR_DRV_CTRL, DRV8323regDrvCtrl);

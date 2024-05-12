@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "../DRV8323_RS/drv8323.h"
 #include "../DRV8323_RS/drv8323_spi.h"
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -110,6 +111,8 @@ int main(void)
   MX_USART3_UART_Init();
   MX_TIM17_Init();
   /* USER CODE BEGIN 2 */
+  HAL_Delay(2000);
+  printf("---------------------------------------\r\n");
   HAL_TIM_Base_Start(&htim17); //for delay_us
   drv8323_init();
   drv832_set_dir(1);
@@ -365,10 +368,14 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOF_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(DRV_CS_GPIO_Port, DRV_CS_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(DRV_CALL_GPIO_Port, DRV_CALL_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOD, DRV_BRAKE_Pin|DRV_ENABLE_Pin|DRV_DIR_Pin, GPIO_PIN_RESET);
@@ -379,6 +386,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(DRV_CS_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : DRV_CALL_Pin */
+  GPIO_InitStruct.Pin = DRV_CALL_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(DRV_CALL_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : DRV_BRAKE_Pin DRV_ENABLE_Pin DRV_DIR_Pin */
   GPIO_InitStruct.Pin = DRV_BRAKE_Pin|DRV_ENABLE_Pin|DRV_DIR_Pin;
