@@ -111,33 +111,40 @@ void DRV832x_write_CSACR(int CSA_FET, int VREF_DIV, int LS_REF, int CSA_GAIN, in
 
 void DRV832x_print_faults(void)
 {
+	printf("DRV832x_print_faults =>");
 	uint16_t val1 = DRV832x_trigger_read_register(FSR1);
 	uint16_t val2 = DRV832x_trigger_read_register(FSR2);
+	if((val1 & 0x3FF) == 0) {
+		printf("no faults in FSR1");
+	} else {
+		if(val1 & (1<<10)){printf("\n\rFAULT\n\r");}
 
-    if(val1 & (1<<10)){printf("\n\rFAULT\n\r");}
-
-    if(val1 & (1<<9)){printf("VDS_OCP\n\r");}
-    if(val1 & (1<<8)){printf("GDF\n\r");}
-    if(val1 & (1<<7)){printf("UVLO\n\r");}
-    if(val1 & (1<<6)){printf("OTSD\n\r");}
-    if(val1 & (1<<5)){printf("VDS_HA\n\r");}
-    if(val1 & (1<<4)){printf("VDS_LA\n\r");}
-    if(val1 & (1<<3)){printf("VDS_HB\n\r");}
-    if(val1 & (1<<2)){printf("VDS_LB\n\r");}
-    if(val1 & (1<<1)){printf("VDS_HC\n\r");}
-    if(val1 & (1)){printf("VDS_LC\n\r");}
-
-    if(val2 & (1<<10)){printf("SA_OC\n\r");}
-    if(val2 & (1<<9)){printf("SB_OC\n\r");}
-    if(val2 & (1<<8)){printf("SC_OC\n\r");}
-    if(val2 & (1<<7)){printf("OTW\n\r");}
-    if(val2 & (1<<6)){printf("CPUV\n\r");}
-    if(val2 & (1<<5)){printf("VGS_HA\n\r");}
-    if(val2 & (1<<4)){printf("VGS_LA\n\r");}
-    if(val2 & (1<<3)){printf("VGS_HB\n\r");}
-    if(val2 & (1<<2)){printf("VGS_LB\n\r");}
-    if(val2 & (1<<1)){printf("VGS_HC\n\r");}
-    if(val2 & (1)){printf("VGS_LC\n\r");}
+		if(val1 & (1<<9)){printf("VDS_OCP\n\r");}
+		if(val1 & (1<<8)){printf("GDF\n\r");}
+		if(val1 & (1<<7)){printf("UVLO\n\r");}
+		if(val1 & (1<<6)){printf("OTSD\n\r");}
+		if(val1 & (1<<5)){printf("VDS_HA\n\r");}
+		if(val1 & (1<<4)){printf("VDS_LA\n\r");}
+		if(val1 & (1<<3)){printf("VDS_HB\n\r");}
+		if(val1 & (1<<2)){printf("VDS_LB\n\r");}
+		if(val1 & (1<<1)){printf("VDS_HC\n\r");}
+		if(val1 & (1)){printf("VDS_LC\n\r");}
+	}
+	if((val1 & 0x3FF) == 0) {
+		printf("no faults in FSR2");
+	} else {
+		if(val2 & (1<<10)){printf("SA_OC\n\r");}
+		if(val2 & (1<<9)){printf("SB_OC\n\r");}
+		if(val2 & (1<<8)){printf("SC_OC\n\r");}
+		if(val2 & (1<<7)){printf("OTW\n\r");}
+		if(val2 & (1<<6)){printf("CPUV\n\r");}
+		if(val2 & (1<<5)){printf("VGS_HA\n\r");}
+		if(val2 & (1<<4)){printf("VGS_LA\n\r");}
+		if(val2 & (1<<3)){printf("VGS_HB\n\r");}
+		if(val2 & (1<<2)){printf("VGS_LB\n\r");}
+		if(val2 & (1<<1)){printf("VGS_HC\n\r");}
+		if(val2 & (1)){printf("VGS_LC\n\r");}
+	}
     }
 
 void DRV832x_enable_gd(void)

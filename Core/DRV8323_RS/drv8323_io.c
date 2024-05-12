@@ -8,6 +8,7 @@
 #include "stm32f0xx_hal.h"
 #include "drv8232_io.h"
 #include "main.h"
+#include "stdio.h"
 //#define DRV_BRAKE_Pin GPIO_PIN_8
 //#define DRV_BRAKE_GPIO_Port GPIOD
 //#define DRV_ENABLE_Pin GPIO_PIN_0
