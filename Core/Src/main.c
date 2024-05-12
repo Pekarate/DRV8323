@@ -44,6 +44,7 @@
 SPI_HandleTypeDef hspi1;
 
 TIM_HandleTypeDef htim15;
+TIM_HandleTypeDef htim17;
 
 UART_HandleTypeDef huart3;
 
@@ -57,6 +58,7 @@ static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_TIM15_Init(void);
 static void MX_USART3_UART_Init(void);
+static void MX_TIM17_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -67,6 +69,11 @@ int _write(int file, char *ptr, int len)
 {
 	HAL_UART_Transmit(&huart3, (uint8_t *)ptr, len, 1000);
 	return len;
+}
+
+void delay_us(uint16_t us) {
+	 __HAL_TIM_SET_COUNTER(&htim17,0);
+	 while(__HAL_TIM_GET_COUNTER(&htim17) < us);
 }
 /* USER CODE END 0 */
 
@@ -101,11 +108,15 @@ int main(void)
   MX_SPI1_Init();
   MX_TIM15_Init();
   MX_USART3_UART_Init();
+  MX_TIM17_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_Base_Start(&htim17); //for delay_us
   drv8323_init();
   drv832_set_dir(1);
   drv832_set_speed(50);
   HAL_Delay(1000);
+  DRV832x_print_faults();
+  drv832_reset_fault();
   DRV832x_print_faults();
   drv832_start();
   HAL_Delay(1000);
@@ -269,6 +280,38 @@ static void MX_TIM15_Init(void)
 
   /* USER CODE END TIM15_Init 2 */
   HAL_TIM_MspPostInit(&htim15);
+
+}
+
+/**
+  * @brief TIM17 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM17_Init(void)
+{
+
+  /* USER CODE BEGIN TIM17_Init 0 */
+
+  /* USER CODE END TIM17_Init 0 */
+
+  /* USER CODE BEGIN TIM17_Init 1 */
+
+  /* USER CODE END TIM17_Init 1 */
+  htim17.Instance = TIM17;
+  htim17.Init.Prescaler = 47;
+  htim17.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim17.Init.Period = 65535;
+  htim17.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim17.Init.RepetitionCounter = 0;
+  htim17.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim17) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM17_Init 2 */
+
+  /* USER CODE END TIM17_Init 2 */
 
 }
 

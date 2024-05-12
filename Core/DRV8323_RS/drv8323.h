@@ -22,4 +22,6 @@ void drv832_set_speed(uint8_t percent);
 void drv832_start();
 void drv832_stop();
 
+void drv832_reset_fault();
+
 #endif /* DRV8323_RS_DRV8323_H_ */

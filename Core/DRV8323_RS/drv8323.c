@@ -10,6 +10,7 @@
 #include "drv8323_spi.h"
 
 extern SPI_HandleTypeDef hspi1;
+extern void delay_us(uint16_t us);
 
 void drv8323_init(void){
 	drv8323_set_enable(1);
@@ -35,4 +36,10 @@ void drv832_start(){
 void drv832_stop(){
 	drv8323_set_brake(0);
 	drv_pwm_stop();
+}
+
+void drv832_reset_fault() {
+	drv8323_set_enable(0);
+	delay_us(10);
+	drv8323_set_enable(1);
 }
