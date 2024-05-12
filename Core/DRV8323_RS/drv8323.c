@@ -23,8 +23,8 @@ void drv832_set_dir(uint8_t dir){
 }
 
 void drv832_set_speed(uint8_t speed){
-	speed = speed;
-	drv_pwm_set_frequency(10000);
+//	speed = speed;
+	drv_pwm_set_frequency(speed);
 	drv_pwm_set_duty_cycle(50);
 }
 

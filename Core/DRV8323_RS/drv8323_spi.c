@@ -111,11 +111,11 @@ void DRV832x_write_CSACR(int CSA_FET, int VREF_DIV, int LS_REF, int CSA_GAIN, in
 
 void DRV832x_print_faults(void)
 {
-	printf("DRV832x_print_faults =>");
+	printf("DRV832x_print_faults => \n");
 	uint16_t val1 = DRV832x_trigger_read_register(FSR1);
 	uint16_t val2 = DRV832x_trigger_read_register(FSR2);
 	if((val1 & 0x3FF) == 0) {
-		printf("no faults in FSR1");
+		printf("no faults in FSR1\n");
 	} else {
 		if(val1 & (1<<10)){printf("\n\rFAULT\n\r");}
 

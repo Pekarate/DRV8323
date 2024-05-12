@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "../DRV8323_RS/drv8323.h"
+#include "../DRV8323_RS/drv8323_spi.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -103,7 +104,9 @@ int main(void)
   /* USER CODE BEGIN 2 */
   drv8323_init();
   drv832_set_dir(1);
-  drv832_set_speed(100);
+  drv832_set_speed(50);
+  HAL_Delay(1000);
+  DRV832x_print_faults();
   drv832_start();
   HAL_Delay(1000);
   drv832_stop();
